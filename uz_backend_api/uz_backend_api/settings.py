@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'uz_backend_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'goalinternationaldb',
+        'NAME': 'uzdb',
         'USER': 'Jeremiah',
         'PASSWORD': '0202February.',
         'HOST': 'localhost',
