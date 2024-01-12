@@ -1,5 +1,5 @@
 from institution.models import Institution
-from ..institution.models import User
+from .models import User
 from string import ascii_uppercase
 from random import randint
 from datetime import datetime

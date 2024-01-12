@@ -40,9 +40,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'institution_email'
 
-    class Meta:
-        default_related_name = 'custom_%(class)s'
-
     def __str__(self):
-        return f'{self.firstName} {self.lastName}'
+        return f'{self.first_name} {self.last_name}'
 
