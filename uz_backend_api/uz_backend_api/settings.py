@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'institution.apps.InstitutionConfig',
+    'accounts.apps.AccountsConfig',
+    'superusers.apps.SuperusersConfig',
+    'administrators.apps.AdministratorsConfig',
+    'applicants.apps.ApplicantsConfig',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 AUTHENTICATION_BACKENDS = [
     "accounts.custom_auth_backend.UserAuthenticationBackend",
