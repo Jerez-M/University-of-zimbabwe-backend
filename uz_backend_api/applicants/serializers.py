@@ -7,7 +7,7 @@ from django.contrib.auth.models import Group, Permission
 class ApplicantUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ["role", "is_superuser", "is_staff", "is_active"]
+        exclude = ["role", "is_superuser", "is_staff", "is_active", "institution_email"]
 
         extra_kwargs = {'password': {'write_only': True, 'required': True},
                         "institution": {"required": True},
@@ -19,13 +19,14 @@ class ApplicantUserSerializer(serializers.ModelSerializer):
                         "national_id": {"required": True},
                         "nationality": {"required": True},
                         "home_address": {"required": True},
+                        "altEmail": {"required": True},
                         }
 
 
 class RetrieveApplicantUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
+        exclude = ["institution_email"]
 
         extra_kwargs = {
             "password": {"write_only": True}

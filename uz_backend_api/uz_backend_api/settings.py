@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-#8*6e4c8ml0rdrit%aw4u1we@g#rn0ons%bbgwd@^vb2z#kj0#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'superusers.apps.SuperusersConfig',
     'administrators.apps.AdministratorsConfig',
     'applicants.apps.ApplicantsConfig',
+    'audit_trail_engine.apps.AuditTrailEngineConfig'
 ]
 
 MIDDLEWARE = [
@@ -205,3 +206,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+#Setting up email variables
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "jjmuchazondida@gmail.com"
+EMAIL_HOST_PASSWORD = "iazysgbhzmilstox"
+# ALLOWED_HOSTS = []

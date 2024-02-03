@@ -3,6 +3,9 @@ from .models import Administrator
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework import status
+from django.core.mail import send_mail
+from django.conf import settings
+from accounts.models import User
 
 # Create your views here.
 
@@ -23,6 +26,38 @@ class CreateAdministratorView(CreateAPIView):
                     "message": "Administrator created successifully",
                     "data": serializer.data
                 }
+
+                first_name = serializer.validated_data['user']['first_name'].upper()
+                last_name = serializer.validated_data['user']['last_name'].upper()
+                altEmail = serializer.validated_data['user']['altEmail']
+                institution_email = serializer.validated_data['user']['institution_email']
+                full_name = f'{first_name } { last_name}'
+                password = 'password'
+
+                this_instance = User.objects.get(pk=serializer.data['user']['id'])
+                username = this_instance.username
+                role = this_instance.role
+
+
+                email_subject = f"Welcome to the UZ Recruitment Portal, Your Account has been Created Successifully"
+                email_to = institution_email
+                email_to_2 = altEmail
+                email_from = settings.EMAIL_HOST_USER
+                email_body = f"Dear {full_name},\n\nWe are delighted to inform you that your account has been successfully created for the UZ Recruitment Portal. " \
+                            f"You can now access your account using the following details:\n\n" \
+                            f"Username: {username}\n" \
+                            f"Password: {password}\n"\
+                            f"Institution Email: {institution_email}\n" \
+                            f"Personal Email: {altEmail}\n" \
+                            f"Role: {role}\n\n" \
+                            f"Kindly use the Username and password above to Sign in to your account. \n \n" \
+                            f"Please keep this information secure and do not share it with anyone. If you have any questions or need assistance, " \
+                            f"feel free to reach out to our support team at uzrecruitment@uz.ac.zw.\n\n" \
+                            f"Thank you for joining UZ Recruitment Portal. We look forward to providing you with a great experience!\n\n" \
+                            f"Best regards,\n" \
+                            f"University Of Zimbabwe\n"  
+                                                          
+                send_mail(email_subject, email_body, email_from, [email_to, email_to_2], fail_silently=True)
 
                 return Response(data, status=status.HTTP_201_CREATED)
 

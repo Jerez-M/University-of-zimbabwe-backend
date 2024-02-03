@@ -29,5 +29,8 @@ urlpatterns = [
     path('api/v1/institutions/', include('institution.urls')),
     path('api/v1/superusers/', include('superusers.urls')),
     path('api/v1/administrators/', include('administrators.urls')),
-    path('api/v1/applicants/', include('applicants.urls'))
+    path('api/v1/applicants/', include('applicants.urls')),
+    path('api/v1/work-experiances/', include('applicants.work_experiances.urls')),
+    path('api/v1/applicant-docs/', include('applicants.applicant_docs.urls')),
+    path('api/v1/educational-qualifications/', include('applicants.educational_qualifications.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

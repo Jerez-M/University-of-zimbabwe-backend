@@ -32,7 +32,7 @@ class AdministratorSerializer(ModelSerializer):
         ).count()
         new_username = f'{user.username}{total_administrators}A'
         user.username = new_username
-        user.set_password(new_username)
+        user.set_password('ADMIN')
 
         try:
             admin = Administrator.objects.create(user=user, **validated_data)
