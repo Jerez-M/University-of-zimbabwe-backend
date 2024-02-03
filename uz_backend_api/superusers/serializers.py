@@ -33,7 +33,7 @@ class SuperuserSerializer(ModelSerializer):
         ).count()
         new_username = f'{user.username}{total_superusers}SU'
         user.username = new_username
-        user.set_password(new_username)
+        user.set_password('SUPERUSER')
 
         try:
             superuser = Superuser.objects.create(user=user, **validated_data)
