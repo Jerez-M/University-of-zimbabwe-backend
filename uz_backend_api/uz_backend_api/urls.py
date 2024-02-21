@@ -33,4 +33,8 @@ urlpatterns = [
     path('api/v1/work-experiances/', include('applicants.work_experiances.urls')),
     path('api/v1/applicant-docs/', include('applicants.applicant_docs.urls')),
     path('api/v1/educational-qualifications/', include('applicants.educational_qualifications.urls')),
+    path('api/v1/job-categories/', include('job_categories.urls')),
+    path('api/v1/jobs/', include('jobs.urls')),
+    path('api/v1/skills/', include('skills.urls')),
+    path('api/v1/applicant-skills/', include('applicant_skills.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -24,3 +24,7 @@ class InstitutionRetrieveSerializer(ModelSerializer):
         fields = "__all__"
 
         
+class MinimizedInstitutionSerializer(ModelSerializer):
+    class Meta:
+        model = Institution
+        fields = ['id', 'institution_name']

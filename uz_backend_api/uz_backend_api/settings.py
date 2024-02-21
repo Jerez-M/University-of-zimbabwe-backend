@@ -48,7 +48,11 @@ INSTALLED_APPS = [
     'superusers.apps.SuperusersConfig',
     'administrators.apps.AdministratorsConfig',
     'applicants.apps.ApplicantsConfig',
-    'audit_trail_engine.apps.AuditTrailEngineConfig'
+    'audit_trail_engine.apps.AuditTrailEngineConfig',
+    'job_categories.apps.JobCategoriesConfig',
+    'jobs.apps.JobsConfig',
+    'skills.apps.SkillsConfig',
+    'applicant_skills.apps.ApplicantSkillsConfig'
 ]
 
 MIDDLEWARE = [
@@ -193,8 +197,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
     "http://localhost:3000",
 ]
 

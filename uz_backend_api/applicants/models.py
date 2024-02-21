@@ -5,7 +5,7 @@ from accounts.models import User
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='applicant_profile_pictures', blank=True, null=True)
+    # profile_picture = models.ImageField(upload_to='applicant_profile_pictures', blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
@@ -50,7 +50,8 @@ class ApplicantPersonalDocument(models.Model):
         ('RESUME', 'RESUME'),
         ('CV', 'CV'),
         ('IDENTIFICATION', 'IDENTIFICATION'),
-        ('EDUCATIONAL', 'EDUCATIONAL')
+        ('EDUCATIONAL', 'EDUCATIONAL'),
+        ('PROFILE PICTURE', 'PROFILE PICTURE')
     )
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE, blank=True, null=True)
     doc_type = models.CharField(max_length=200, blank=True, null=True, choices=APPLICANT_PERSONAL_DOCUMENTS_TYPES)

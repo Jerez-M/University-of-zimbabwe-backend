@@ -6,6 +6,6 @@ urlpatterns = [
      path('<int:pk>/', views.ApplicantPersonalDocumentUpdateGetDeleteByID.as_view()),
     path('get-all/',
          views.ApplicantPersonalDocumentGetAll.as_view()),
-    path('upload-personal-documents-by-applicant-id/doc/<int:Id>/', views.update_staff_personal_document),
+    # path('upload-personal-documents-by-applicant-id/doc/<int:Id>/', views.update_staff_personal_document),
 
 ]

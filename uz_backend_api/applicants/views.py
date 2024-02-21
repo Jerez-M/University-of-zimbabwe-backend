@@ -1,12 +1,13 @@
 from .serializers import ApplicantSerializer, ApplicantRetrieveSerializer
 from .models import Applicant
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework import status
 from accounts.models import User
-from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.core.mail import send_mail
+from rest_framework.parsers import MultiPartParser, FormParser
+
 # Create your views here.
 
 class CreateApplicantView(CreateAPIView):
@@ -76,3 +77,25 @@ class ApplicantReadUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     serializer_class = ApplicantRetrieveSerializer
     queryset = Applicant.objects.all()
 
+
+# class Update_staff_profile_picture(GenericAPIView):
+#     permission_classes = []
+#     serializer_class = ApplicantRetrieveSerializer
+#     parser_classes = [MultiPartParser, FormParser]
+#     queryset = Applicant.objects.all()
+
+#     def post(self, request):
+#         data = request.data
+#         serializer = self.serializer_class(data=data)
+#         try:
+#             if serializer.is_valid():
+#                 savedInstance = serializer.save()
+#                 data = {
+#                     "data": serializer.data,
+#                     "message": "Profile picture uploaded successifully"
+#                 }
+#                 return Response(data, status=status.HTTP_202_ACCEPTED)
+            
+#             return Response({"message": "Failed to upload profile picture, Validation error occured", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+#         except Exception as e:
+#             return Response({"message": "Failed to upload profile picture, Exception error occured", "error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

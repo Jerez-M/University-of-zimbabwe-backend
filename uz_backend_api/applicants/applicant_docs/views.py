@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.parsers import FormParser, MultiPartParser
 
 # Create your views here.
 
@@ -12,14 +13,16 @@ from rest_framework.decorators import api_view, permission_classes
 
 class ApplicantPersonalDocumentCreate(GenericAPIView):
     permission_classes = []
+    parser_classes = [MultiPartParser, FormParser]
     serializer_class = ApplicantPersonalDocumentSerializer
     queryset = ApplicantPersonalDocument.objects.all()
 
     def post(self, request):
-        data = {
-            'applicant': request.data['applicant'],
-            'doc_type': request.data['doc_type']
-        }
+        # data = {
+        #     'applicant': request.data['applicant'],
+        #     'doc_type': request.data['doc_type']
+        # }
+        data = request.data
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             saved = serializer.save()
@@ -36,6 +39,7 @@ class ApplicantPersonalDocumentCreate(GenericAPIView):
 
 class ApplicantPersonalDocumentGetAll(GenericAPIView):
     permission_classes = []
+    parser_classes = [MultiPartParser, FormParser]
     serializer_class = ApplicantPersonalDocumentSerializer
     queryset = ApplicantPersonalDocument.objects.all()
 
@@ -45,37 +49,37 @@ class ApplicantPersonalDocumentGetAll(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
-@permission_classes([])
-def update_staff_personal_document(request, Id):
-    if request.method == 'POST':
-        try:
-            personal_doc = ApplicantPersonalDocument.objects.get(applicant_id=Id)
-        except ApplicantPersonalDocument.DoesNotExist:
-            return Response(data={'error': 'Applicant personal document record not Found.'},
-                            status=status.HTTP_404_NOT_FOUND)
-        else:
-            try:
-                dp = request.FILES['file']
-            except KeyError:
-                return Response(data={'error': 'Applicant Document missing.'},
-                                status=status.HTTP_400_BAD_REQUEST)
-            else:
-                dp.name = f'{personal_doc.applicant.user.username}.{dp.name.split(".")[1]}'
-                personal_doc.file = dp
-                personal_doc.save()
-                # audit_trail(
-                #     request.user.id,
-                #     f'Upload Applicant personal document {personal_doc.applicant.user.first_name} '
-                #     f'{personal_doc.applicant.user.last_name}',
-                #     'ApplicantPersonalDocument',
-                #     personal_doc.id,
-                #     'Update'
-                # )
-                return Response(data={'message': 'Applicant member personal document updated successfully.'},
-                                status=status.HTTP_200_OK)
-    else:
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+# @api_view(['POST'])
+# @permission_classes([])
+# def update_staff_personal_document(request, Id):
+#     if request.method == 'POST':
+#         try:
+#             personal_doc = ApplicantPersonalDocument.objects.get(applicant_id=Id)
+#         except ApplicantPersonalDocument.DoesNotExist:
+#             return Response(data={'error': 'Applicant personal document record not Found.'},
+#                             status=status.HTTP_404_NOT_FOUND)
+#         else:
+#             try:
+#                 dp = request.FILES['file']
+#             except KeyError:
+#                 return Response(data={'error': 'Applicant Document missing.'},
+#                                 status=status.HTTP_400_BAD_REQUEST)
+#             else:
+#                 dp.name = f'{personal_doc.applicant.user.username}.{dp.name.split(".")[1]}'
+#                 personal_doc.file = dp
+#                 personal_doc.save()
+#                 # audit_trail(
+#                 #     request.user.id,
+#                 #     f'Upload Applicant personal document {personal_doc.applicant.user.first_name} '
+#                 #     f'{personal_doc.applicant.user.last_name}',
+#                 #     'ApplicantPersonalDocument',
+#                 #     personal_doc.id,
+#                 #     'Update'
+#                 # )
+#                 return Response(data={'message': 'Applicant member personal document updated successfully.'},
+#                                 status=status.HTTP_200_OK)
+#     else:
+#         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ApplicantPersonalDocumentUpdateGetDeleteByID(GenericAPIView):

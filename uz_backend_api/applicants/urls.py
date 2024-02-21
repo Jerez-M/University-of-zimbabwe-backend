@@ -6,7 +6,5 @@ urlpatterns = [
     path('<int:pk>/', views.ApplicantReadUpdateDestroyView.as_view()),
     path('get-all/', views.GetAllApplicants.as_view()),
 
-    # path('update-applicant-profile-picture-using-applicant-id/<int:Id>/', views.update_staff_profile_picture),
-    # path('upload-personal-documents-by-applicant-id/doc/<int:Id>/', views.update_staff_personal_document),
-
+    # path('update-applicant-profile-picture-using-applicant-id/<int:Id>/', views.Update_staff_profile_picture.as_view()),
 ]
