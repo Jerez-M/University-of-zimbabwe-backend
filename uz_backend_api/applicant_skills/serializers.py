@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import ApplicantSkill
+from skills.serializers import MinimizedSkillRetrieveSerializer
 
 class ApplicantSkillSerializer(ModelSerializer):
     class Meta:
@@ -8,12 +9,12 @@ class ApplicantSkillSerializer(ModelSerializer):
 
         extra_kwargs = {
             "applicant": {"required": True},
-            "skill": {"required": True}
+            "skills": {"required": True}
         }
 
 
 class ApplicantSkillRetrieveSerializer(ModelSerializer):
-    
+    skills = MinimizedSkillRetrieveSerializer(many=True)
     class Meta:
         model = ApplicantSkill
         fields = "__all__"

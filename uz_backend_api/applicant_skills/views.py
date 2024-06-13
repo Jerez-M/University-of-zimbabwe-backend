@@ -29,7 +29,7 @@ class GetAllApplicantSkillsByInstitutionId(ListAPIView):
 
     def get_queryset(self):
         institution_id = self.kwargs['institution_id']
-        queryset = ApplicantSkill.objects.filter(skill__institution_id=institution_id)
+        queryset = ApplicantSkill.objects.filter(skills__institution_id=institution_id)
         return queryset
     
 class GetAllApplicantSkillsByApplicantId(ListAPIView):

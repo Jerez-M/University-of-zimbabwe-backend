@@ -20,12 +20,6 @@ class UserSerializer(ModelSerializer):
                         "home_address": {"required": True},
                         }
 
-    # def create(self, validated_data):
-    #     user = User.objects.create(**validated_data)
-    #     user.set_password(validated_data['password'])
-    #     user.save()
-    #     return user
-
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod

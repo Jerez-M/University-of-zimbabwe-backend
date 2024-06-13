@@ -19,3 +19,8 @@ class SkillRetrieveSerializer(ModelSerializer):
     class Meta:
         model = Skill
         fields = "__all__"
+
+class MinimizedSkillRetrieveSerializer(ModelSerializer):    
+    class Meta:
+        model = Skill
+        fields = ['id', 'name']

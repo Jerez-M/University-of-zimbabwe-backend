@@ -6,6 +6,7 @@ djangorestframework-simplejwt==5.3.1
 drf-yasg==1.21.7
 inflection==0.5.1
 Markdown==3.5.1
+mysqlclient==2.2.1
 packaging==23.2
 pillow==10.2.0
 PyJWT==2.8.0

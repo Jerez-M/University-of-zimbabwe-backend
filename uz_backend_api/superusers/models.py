@@ -14,7 +14,7 @@ class Superuser(models.Model):
         ('RESIGNED', 'RESIGNED'),
         ('DISMISSED', 'DISMISSED'),
         ('ON LEAVE', 'ON LEAVE'),
-        ('LEFT ORGANISATION', 'LEFT ORGANISATION'),
+        ('LEFT ORGANIZATION', 'LEFT ORGANIZATION'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     employeeNumber = models.CharField(max_length=30, unique=True, blank=True, null=True)

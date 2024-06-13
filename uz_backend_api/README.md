@@ -1,6 +1,6 @@
 # UZ Recruitment Portal Backend API
 
-This is the backend api for goal international database system
+This is the backend api for University of Zimbabwe Recruitment 
 
 ### Follow the instructions below to run the project.
 

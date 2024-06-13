@@ -5,5 +5,5 @@ from skills.models import Skill
 
 class ApplicantSkill(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE, help_text='Select the user')
-    skill = models.ManyToManyField(Skill, help_text='Select the skill')
-    proficiency_level = models.CharField(max_length=255, help_text='Enter the proficiency level')
+    skills = models.ManyToManyField(Skill, help_text='Select the skill')
+    # proficiency_level = models.CharField(max_length=255, null=True, blank=True, help_text='Enter the proficiency level')
