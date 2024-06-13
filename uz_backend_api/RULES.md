@@ -15,7 +15,7 @@ Define code review criteria, such as code style, best practices, and adherence t
 Encourage constructive feedback and discussions during code reviews.
 
 ## Pull Requests:
-DO NOT WORK IN THE MAIN BRANCH, PRODUCTION BRANCH AND TEST BRANCH, ALSO DO NOT DIRECTLY PUSH TO THOS BRANCHES. THESE ARE FOR CI/CD.
+DO NOT WORK IN THE MAIN BRANCH, PRODUCTION BRANCH AND TEST BRANCH, ALSO DO NOT DIRECTLY PUSH TO THOSE BRANCHES. THESE ARE FOR CI/CD.
 WORK IN THE development branch or create feature branch, push commits to that branch
 ALWAYS CREATE A PULL REQUEST TO THE TEST BRANCH AND WAIT FOR IT TO BE MERGED BY THE BRANCH MASTER AFTER THE CODE IS FULLY REVIEWED
 
